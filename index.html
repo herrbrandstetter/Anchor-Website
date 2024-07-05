@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#082f49">
+    <link rel="shortcut icon" href="/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#082f49">
+    <meta name="description" content="Your personal news anchor right inside Discord! Always be up-to-date about what's happening around the world, and stay informed about the topics you're interested in.">
+    <title>Anchor</title>
+</head>
+<body class="text-sky-100 bg-sky-950 selection:bg-patina-500">
+    <header x-data="navigation" @resize.window="resize()" @click.outside="showNav = false" class="w-full fixed top-0 z-50 bg-gray-900 border-b-sky-100 border-b-2">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-4 focus-outline outline-offset-4">
+                <img src="resources/images/logo.png" alt="Anchor logo" width="80px">
+                <span class="text-3xl font-alt">Anchor</span>
+            </a>
+            <template x-if="width <= 768">
+                <button type="button" @click="showNav = !showNav" x-show="mobileNav" class="min-h-6 relative flex flex-col justify-between gap-[5px] focus-outline outline-offset-4">
+                    <div class="w-8 h-1 rounded bg-sky-100 transition-all duration-200" :class="showNav && '-rotate-45 translate-y-[10px]'"></div>
+                    <div class="w-8 h-1 rounded bg-sky-100 transition-all duration-200" :class="showNav && 'opacity-0'"></div>
+                    <div class="w-8 h-1 rounded bg-sky-100 transition-all duration-200" :class="showNav && 'rotate-45 -translate-y-[10px]'"></div>
+                </button>
+            </template>
+            <template x-if="width > 768">
+                <nav class="">
+                    <ul class="flex items-center gap-16 xl:gap-24">
+                        <li><a href="#" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Add</a></li>
+                        <li><a href="#features" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Features</a></li>
+                        <li><a href="#donate" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Donate</a></li>
+                        <li><a href="#support" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Support</a></li>
+                    </ul>
+                </nav>
+            </template>
+        </div>
+        <template x-if="width <= 768">
+            <nav x-show="showNav" x-collapse.duration.200ms class="w-full bg-gray-900">
+                <ul class="pt-4 pb-8 flex flex-col items-center gap-3">
+                    <li><a href="#" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Add</a></li>
+                    <li><a href="#features" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Features</a></li>
+                    <li><a href="#donate" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Donate</a></li>
+                    <li><a href="#support" @click="toggleNav()" class="text-xl underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Support</a></li>
+                </ul>
+            </nav>
+        </template>
+    </header>
+    <main>
+        <section x-data="newsCarousel" id="add" class="p-5 pt-16 min-h-dvh flex flex-col items-center gap-10 justify-center">
+            <img src="resources/images/logo.png" alt="" width="250px">
+            <div class="flex flex-col gap-5 items-center">
+                <h1 class="text-5xl font-alt">Anchor</h1>
+                <h2 class="text-center text-xl">Your personal <span @load.window="next()" id="carousel" class="text-patina-200 font-bold transition-all duration-500 relative" :class="visible ? '' : 'opacity-0'" x-text="category"></span> news anchor right inside Discord!</h2>
+            </div>
+            <a href="https://discord.com/oauth2/authorize?client_id=1122537043856203776&permissions=2147483648&scope=bot" class="p-4 rounded text-lg text-center font-bold tracking-wide bg-patina-600 button-outline">
+                Add to Discord
+            </a>
+            <a href="#features" @click="toggleNav()" class="absolute bottom-5 focus-outline">
+                <img src="resources/images/arrow-down.svg" alt="arrow" width="60px">
+            </a>
+        </section>
+        <section id="features" class="p-5 flex flex-col items-center gap-7 scroll-m-28">
+            <hr class="w-full max-w-128">
+            <h1 class="text-4xl font-bold">Features</h1>
+            <div class="p-3 max-w-[56rem] flex flex-col items-center justify-evenly gap-5 rounded border-2 border-patina-400">
+                <div class="px-3 py-5 my-5 rounded bg-discord outline outline-1 outline-sky-100 shadow-[0_0_20px_7px_#589285]"><span class="text-xl font-mono">/headlines</span></div>
+                <h2 class="mx-12 text-2xl text-center font-bold">Read headlines</h2>
+                <p class="mb-5 text-center">See what matters currently and read the most relevant trending articles. You can also choose a category like business or international news.</p>
+            </div>
+            <div class="p-3 max-w-[56rem] flex flex-col items-center justify-evenly gap-5 rounded border-2 border-patina-400">
+                <div class="px-3 py-5 my-5 rounded bg-discord outline outline-1 outline-sky-100 shadow-[0_0_20px_7px_#589285]"><span class="text-xl font-mono">/search</span></div>
+                <h2 class="mx-12 text-2xl text-center font-bold">Search for articles</h2>
+                <p class="mb-5 text-center">Search through tens of millions of articles by keywords. Easily find coverage on a specific topic you want to learn about.</p>
+            </div>
+            <div class="p-3 max-w-[56rem] flex flex-col items-center justify-evenly gap-5 rounded border-2 border-patina-400">
+                <img src="resources/images/result.png" alt="test" class="w-3/4 max-w-64 my-5 rounded shadow-[0_0_20px_7px_#589285]">
+                <h2 class="mx-12 text-2xl text-center font-bold">Articles at a glance</h2>
+                <p class="mb-5 text-center">Get a summary of the articles matching your request and decide which ones you want to read. Browse through the pages to see more results.</p>
+            </div>
+            <div class="my-7 flex flex-col items-center gap-7">
+                <p class="text-3xl font-bold text-center">And there's much more to come...</p>
+                <a href="/" class="p-4 rounded text-lg text-center font-bold tracking-wide bg-patina-600 button-outline">
+                    See roadmap
+                </a>
+            </div>
+        </section>
+        <section id="donate" class="p-5 flex flex-col items-center gap-7 scroll-m-28">
+            <hr class="w-full max-w-128">
+            <h1 class="text-4xl font-bold">Donate</h1>
+            <div class="w-full flex flex-col items-center gap-7 lg:flex-row lg:justify-evenly lg:my-12 lg:max-w-240">
+                <p class="text-center lg:max-w-96">
+                    If you like Anchor, please consider becoming a member on Ko-fi. For just <b>5$ per month</b> you can help support the development process and cover operational costs.
+                    In return you get access to a bunch of <b>additional features and benefits</b> exclusive to members to enhance your experience with Anchor for your <b>entire server</b>.
+                </p>
+                <a href="/" class="px-4 py-2 rounded flex items-center gap-1 bg-[#13C3FF] button-outline">
+                    <img src="resources/images/kofi.webp" alt="Kofi cup logo" width="60px">
+                    <span class="text-lg text-center font-bold text-black">Become a member</span>
+                </a>
+            </div>
+        </section>
+        <section id="support" class="p-5 flex flex-col items-center gap-7 scroll-m-28">
+            <hr class="w-full max-w-128">
+            <h1 class="text-4xl font-bold">Support</h1>
+            <div class="w-full flex flex-col items-center gap-7 lg:flex-row-reverse lg:justify-evenly lg:my-12 lg:max-w-240">
+                <p class="text-center lg:max-w-96">
+                    In case you need any help with using Anchor, you want to be up-to-date about the development process, give feedback or just want to chat, please join our <b>Discord server</b>.
+                </p>
+                <a href="/" class="px-7 py-5 rounded flex bg-[#5865F2] button-outline">
+                    <img src="resources/images/discord.png" alt="Discord logo and name" width="200px">
+                </a>
+            </div>
+        </section>
+        <div class="p-5 flex flex-col items-center scroll-m-28">
+            <hr class="w-full max-w-128">
+            <div class="my-24 flex flex-col gap-7 items-center">
+                <img src="resources/images/logo.png" alt="Anchor logo" width="250px">
+                <a href="https://discord.com/oauth2/authorize?client_id=1122537043856203776&permissions=2147483648&scope=bot" target="_blank" class="p-4 rounded text-lg text-center font-bold tracking-wide bg-patina-600 button-outline">
+                    Add to Discord
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer class="p-4 flex flex-col items-center gap-4 bg-gray-900 border-t-sky-100 border-t-2">
+        <a href="/" class="text-3xl font-alt focus-outline outline-offset-2">Anchor</a>
+        <span class="text-center text-lg">Your personal news anchor right inside Discord!</span>
+        <span class="text-center text-lg">© HerrBrandstetter 2024 ♥</span>
+        <ul class="flex gap-7">
+            <li><a href="/imprint/" class="uppercase underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Imprint</a></li>
+            <li><a href="/privacy/" class="uppercase underline decoration-sky-100/0 hover:decoration-sky-100 transition-all focus-outline outline-offset-2 duration-300">Privacy Policy</a></li>
+        </ul>
+    </footer>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

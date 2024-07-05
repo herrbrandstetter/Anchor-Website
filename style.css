@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./resources/fonts/inter-v13-latin-regular.woff2') format('woff2');
+}
+  
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./resources/fonts/inter-v13-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./resources/fonts/merriweather-v30-latin-regular.woff2') format('woff2');
+  }
+  
+@font-face {
+    font-display: swap;
+    font-family: 'Merriweather';
+    font-style: italic;
+    font-weight: 400;
+    src: url('./resources/fonts/merriweather-v30-latin-italic.woff2') format('woff2');
+}
+  
+@font-face {
+    font-display: swap;
+    font-family: 'Merriweather';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./resources/fonts/merriweather-v30-latin-700.woff2') format('woff2');
+}
+  
+@font-face {
+    font-display: swap;
+    font-family: 'Merriweather';
+    font-style: italic;
+    font-weight: 700;
+    src: url('./resources/fonts/merriweather-v30-latin-700italic.woff2') format('woff2');
+}
+
+[x-cloak] {
+    display: none; 
+}
+
+.font-alt {
+    font-family: Merriweather;
+}
+
+.button-outline {
+    @apply outline outline-sky-100 outline-0 hover:outline-2 focus-visible:outline-2 transition-all duration-100
+}
+
+.focus-outline {
+    @apply button-outline hover:outline-0 rounded
+}
+
+body {
+    font-family: Inter;
+}
+
+#carousel {
+    text-shadow:
+        0 0 7px #11221f,
+        0 0 10px #11221f,
+        0 0 14px #11221f,
+        0 0 18px #8abeb1,
+        0 0 21px #8abeb1,
+        0 0 23px #8abeb1,
+        0 0 25px #dbece7;
+}
