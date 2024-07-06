@@ -21,7 +21,7 @@
         <div class="px-6 py-4 flex items-center justify-between">
             <a href="/" class="flex items-center gap-4 focus-outline outline-offset-4">
                 <img src="resources/images/logo.png" alt="Anchor logo" width="80px">
-                <span class="text-3xl font-alt">Anchor</span>
+                <span class="text-3xl font-merriweather">Anchor</span>
             </a>
             <template x-if="width <= 768">
                 <button type="button" @click="showNav = !showNav" x-show="mobileNav" class="min-h-6 relative flex flex-col justify-between gap-[5px] focus-outline outline-offset-4">
@@ -53,16 +53,16 @@
         </template>
     </header>
     <main>
-        <section x-data="newsCarousel" id="add" class="p-5 pt-16 min-h-dvh flex flex-col items-center gap-10 justify-center">
+        <section x-data="newsCarousel" id="add" class="p-5 pt-32 min-h-dvh flex flex-col items-center gap-10 justify-between">
             <img src="resources/images/logo.png" alt="" width="250px">
             <div class="flex flex-col gap-5 items-center">
-                <h1 class="text-5xl font-alt">Anchor</h1>
+                <h1 class="text-5xl font-merriweather">Anchor</h1>
                 <h2 class="text-center text-xl">Your personal <span @load.window="next()" id="carousel" class="text-patina-200 font-bold transition-all duration-500 relative" :class="visible ? '' : 'opacity-0'" x-text="category"></span> news anchor right inside Discord!</h2>
             </div>
             <a href="https://discord.com/oauth2/authorize?client_id=1122537043856203776&permissions=2147483648&scope=bot" class="p-4 rounded text-lg text-center font-bold tracking-wide bg-patina-600 button-outline">
                 Add to Discord
             </a>
-            <a href="#features" @click="toggleNav()" class="absolute bottom-5 focus-outline">
+            <a href="#features" @click="toggleNav()" class="relative bottom-5 focus-outline">
                 <img src="resources/images/arrow-down.svg" alt="arrow" width="60px">
             </a>
         </section>
@@ -128,7 +128,7 @@
         </div>
     </main>
     <footer class="p-4 flex flex-col items-center gap-4 bg-gray-900 border-t-sky-100 border-t-2">
-        <a href="/" class="text-3xl font-alt focus-outline outline-offset-2">Anchor</a>
+        <a href="/" class="text-3xl font-merriweather focus-outline outline-offset-2">Anchor</a>
         <span class="text-center text-lg">Your personal news anchor right inside Discord!</span>
         <span class="text-center text-lg">© HerrBrandstetter 2024 ♥</span>
         <ul class="flex gap-7">
